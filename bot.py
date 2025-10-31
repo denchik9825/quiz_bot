@@ -3,12 +3,16 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiosql import create_table
 from hadlers import router
+from dotenv import load_dotenv
+import os
 
 logging.basicConfig(level=logging.INFO)
 
-APi_TOKEN = 'token'
+load_dotenv()
+API_TOKEN = os.getenv('API_TOKEN')
 
-bot = Bot(token=APi_TOKEN)
+
+bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
 async def main():

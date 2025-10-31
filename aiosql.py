@@ -6,7 +6,7 @@ async def create_table():
     async with aiosqlite.connect(DB_NAME) as db:
         await db.execute('''CREATE TABLE IF NOT EXISTS quiz_state_2 (user_id INTEGER PRIMARY KEY, question_index INTEGER)''')
         await db.execute(
-            '''CREATE TABLE IF NOT EXISTS quiz_results (user_id INTEGER PRIMARY KEY, question_index INTEGER, status INTEGER )''')
+            '''CREATE TABLE IF NOT EXISTS quiz_results (user_id INTEGER PRIMARY KEY, status INTEGER )''')
         await db.commit()
 
 async def update_quiz_index(user_id, index):

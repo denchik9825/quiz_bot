@@ -13,10 +13,10 @@ def generate_opting_keyboard(answers_options, right_answers):
 
 def cmd_start_keyboard():
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text="Начать викторину", resize_keyboard=True))
-    return builder.as_markup()
+    builder.add(types.KeyboardButton(text="Начать викторину"))
+    return builder.as_markup(resize_keyboard=True)
 
 def final_keyboard():
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text="Посмотерть статистику", resize_keyboard=True), types.KeyboardButton(text='Сбросить результаты и начать заново quiz', resize_keyboard=True))
-    return builder.as_markup()
+    builder.add(types.KeyboardButton(text="Посмотреть статистику"), types.KeyboardButton(text='Сбросить результаты и начать заново quiz'))
+    return builder.as_markup(resize_keyboard=True)

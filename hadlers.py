@@ -68,9 +68,7 @@ async def wrong_answer(callback: types.CallbackQuery):
     await callback.message.answer(f"Вы ответили неправильно\n, правильный ответ: {quiz_data[current_question_index]['options'][correct_option]}")
     current_question_index += 1
     await update_quiz_index(callback.from_user.id, current_question_index)
-    current_status_quiz = await get_status(callback.from_user.id)
-    current_status_quiz = current_status_quiz + 0
-    await update_quiz_status(callback.from_user.id, current_status_quiz)
+
 
     if current_question_index < len(quiz_data):
         await get_question(callback.message, callback.from_user.id)
@@ -78,14 +76,14 @@ async def wrong_answer(callback: types.CallbackQuery):
     else:
         await callback.message.answer("Это был последний вопрос", reply_markup=final_keyboard())
 
-@router.message(F.text == "Посмотерть статистику")
+@router.message(F.text == "Посмотреть статистику")
 async def status_quiz(message: types.Message):
     status_result = await get_status(message.from_user.id)
     if status_result >= 8:
-        await message.answer(f"Вы ответили на {status_result} из {len(quiz_data)}\n Выбольшой молодец и хорошо усвоили базовые знания по Python")
+        await message.answer(f"Вы ответили на {status_result} из {len(quiz_data)}\nВы большой молодец и хорошо усвоили базовые знания по Python")
 
     elif status_result < 8 and status_result > 4:
-        await message.answer(f"Вы ответили на {status_result} из {len(quiz_data)}.\n Вам стоит подтянуть базовые знания Python")
+        await message.answer(f"Вы ответили на {status_result} из {len(quiz_data)}.\nВам стоит подтянуть базовые знания Python")
     else:
         await message.answer(f"Вы ответили на {status_result} из {len(quiz_data)}.\n Вам стоит заново изучить базовые знания Python")
 @router.message(F.text =='Сбросить результаты и начать заново quiz')
